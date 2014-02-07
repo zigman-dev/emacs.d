@@ -68,8 +68,18 @@
 (tool-bar-mode -1)
 
 ; Frame dimension
-(set-frame-size (selected-frame) 120 60)
-(set-frame-position (selected-frame) 0 0)
+(require 'frame-cmds)
+; FIXME: Initialize frame width to 120 chars (not a trivial task..><)
+(defun maximize-frame-vertically-left ()
+  (interactive)
+  (maximize-frame-vertically)
+  (move-frame-to-screen-left (selected-frame)))
+(global-set-key (kbd "C-c f <left>") 'maximize-frame-vertically-left)
+
+(set-frame-width nil 120 nil)
+
+;(set-frame-size (selected-frame) 120 60)
+;(set-frame-position (selected-frame) 0 0)
 
 ;===============================================================================
 ; Language support
