@@ -69,9 +69,8 @@
 ; Editor layout
 ;===============================================================================
 (cond
-  ((eq system-type "windows-nt") (set-default-font "Consolas-8")
-   (eq system-type "gnu/linux") (set-default-font "Monospace-8")
-  )
+  ((eq system-type 'windows-nt) (set-default-font "Consolas-9"))
+  ((eq system-type 'gnu/linux) (set-default-font "Monospace-9"))
 )
 (load-theme 'wombat t)
 (tool-bar-mode -1)
@@ -118,19 +117,5 @@
   (setq indent-tabs-mode t))
 (add-hook 'makefile-mode-hook 'tabs-makefile-hook)
 
-;===============================================================================
-; Automatically generated (Don't modify)
-;===============================================================================
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(column-number-mode t)
- '(cua-mode t nil (cua-base))
- '(ecb-options-version "2.40")
- '(inhibit-startup-screen t)
- '(tool-bar-mode nil))
 
 
