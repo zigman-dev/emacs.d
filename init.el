@@ -1,6 +1,8 @@
 ;===============================================================================
 ; Main configuration
 ;===============================================================================
+(setq inhibit-startup-screen t)
+
 (server-start)
 ; Avoid the annoying "Buffer still has clients" question
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
@@ -105,6 +107,7 @@
 ;
 (setq ecb-tip-of-the-day nil)
 (require 'ecb)
+(setq ecb-options-version "2.40")
 ;(add-hook 'c-mode-common-hook '(lambda () (ecb-activate)))
 
 ;
