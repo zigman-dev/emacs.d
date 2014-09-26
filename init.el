@@ -2,13 +2,18 @@
 ; Main configuration
 ;===============================================================================
 (server-start)
+; Avoid the annoying "Buffer still has clients" question
+(remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
 
 (add-to-list 'load-path "~/.emacs.d/lisp")
 (add-to-list 'load-path "~/.emacs.d/ecb-2.40-patched")
 
-(setq find-program "%APPDATA%\\.emacs.d\\unxutils\\find.exe")
-(setq grep-program "%APPDATA%\\.emacs.d\\unxutils\\grep.exe")
-
+; Supply *nix commands and .el only for Windows, Linux have theirs installed globally
+(when (eq system-type `windows-nt)
+  (add-to-list 'load-path "~/.emacs.d/lisp_windows")
+  (setq find-program "%APPDATA%\\.emacs.d\\program_windows\\find.exe")
+  (setq grep-program "%APPDATA%\\.emacs.d\\program_windows\\grep.exe")
+)
 
 ;===============================================================================
 ; Editor operation
@@ -63,18 +68,22 @@
 ;===============================================================================
 ; Editor layout
 ;===============================================================================
-(set-default-font "Consolas-9")
-(load-theme 'wheatgrass t)
+(cond
+  ((eq system-type "windows-nt") (set-default-font "Consolas-8")
+   (eq system-type "gnu/linux") (set-default-font "Monospace-8")
+  )
+)
+(load-theme 'wombat t)
 (tool-bar-mode -1)
 
 ; Frame dimension
-(require 'frame-cmds)
+;(require 'frame-cmds)
 ; FIXME: Initialize frame width to 120 chars (not a trivial task..><)
-(defun maximize-frame-vertically-left ()
-  (interactive)
-  (maximize-frame-vertically)
-  (move-frame-to-screen-left (selected-frame)))
-(global-set-key (kbd "C-c f <left>") 'maximize-frame-vertically-left)
+;(defun maximize-frame-vertically-left ()
+;  (interactive)
+;  (maximize-frame-vertically)
+;  (move-frame-to-screen-left (selected-frame)))
+;(global-set-key (kbd "C-c f <left>") 'maximize-frame-vertically-left)
 
 (set-frame-width nil 120 nil)
 
@@ -118,11 +127,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(column-number-mode t)
+ '(cua-mode t nil (cua-base))
  '(ecb-options-version "2.40")
- '(inhibit-startup-screen t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+ '(inhibit-startup-screen t)
+ '(tool-bar-mode nil))
+
+
