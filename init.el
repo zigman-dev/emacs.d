@@ -2,7 +2,6 @@
 ; Main configuration
 ;===============================================================================
 (setq inhibit-startup-screen t)
-
 (server-start)
 ; Avoid the annoying "Buffer still has clients" question
 (remove-hook 'kill-buffer-query-functions 'server-kill-buffer-query-function)
@@ -64,8 +63,11 @@
 
 ; Create new files in utf-8
 (setq-default default-buffer-file-coding-system 'utf-8)
-; Open file in big5
+; Priority order of encoding to open file: utf-8 with BOM -> utf-8 -> big5 -> gb2312
+(prefer-coding-system 'gb2312)
 (prefer-coding-system 'big5)
+;(prefer-coding-system 'utf-8)
+;(prefer-coding-system 'utf-8-auto)
 
 ;===============================================================================
 ; Editor layout
@@ -90,6 +92,8 @@
 
 ;(set-frame-size (selected-frame) 120 60)
 ;(set-frame-position (selected-frame) 0 0)
+
+(setq frame-title-format (list "%b  (" '((:eval default-directory)) ")"))
 
 ;===============================================================================
 ; Language support
