@@ -51,11 +51,12 @@
 (global-hl-line-mode 1)
 
 ; Column marker
-(require 'fill-column-indicator)
-(setq-default fci-rule-column 80)
-(setq-default fci-rule-width 2)
-(setq-default fci-rule-color "grey")
-(add-hook 'after-change-major-mode-hook 'fci-mode)
+; Zigman: Buggy.. moving up cursor by 2 lines if empty
+;(require 'fill-column-indicator)
+;(setq-default fci-rule-column 80)
+;(setq-default fci-rule-width 2)
+;(setq-default fci-rule-color "grey")
+;(add-hook 'after-change-major-mode-hook 'fci-mode)
 
 ;
 ; Coding system
