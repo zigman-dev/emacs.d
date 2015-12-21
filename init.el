@@ -74,8 +74,8 @@
 ; Editor layout
 ;===============================================================================
 (cond
-  ((eq system-type 'windows-nt) (set-default-font "Consolas-9"))
-  ((eq system-type 'gnu/linux) (set-default-font "Monospace-9"))
+  ((eq system-type 'windows-nt) (set-default-font "Consolas-8"))
+  ((eq system-type 'gnu/linux) (set-default-font "Monospace-8"))
 )
 (load-theme 'wombat t)
 (tool-bar-mode -1)
@@ -102,7 +102,8 @@
 
 ;-- C-like ---------------------------------------------------------------------
 
-(setq-default c-basic-offset 4)
+(setq-default c-default-style "bsd"
+              c-basic-offset 4)
 
 ;
 ; ECB
