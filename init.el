@@ -44,9 +44,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-; Cursor
-(setq-default cursor-type 'bar)
-
 ; Parentheses matching
 (global-hl-line-mode 1)
 
@@ -78,7 +75,7 @@
   ((eq system-type 'gnu/linux) (set-default-font "Monospace-8"))
 )
 (load-theme 'wombat t)
-(tool-bar-mode -1)
+(if (display-graphic-p) (progn (tool-bar-mode -1)))
 
 ; Frame dimension
 ;(require 'frame-cmds)
@@ -95,6 +92,10 @@
 ;(set-frame-position (selected-frame) 0 0)
 
 (setq frame-title-format (list "%b  (" '((:eval default-directory)) ")"))
+
+; Cursor
+(setq-default cursor-type '(bar . 4))
+(set-cursor-color "#ffff00")
 
 ;===============================================================================
 ; Language support
